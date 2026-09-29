@@ -14,7 +14,7 @@ app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.json({
-    message: "API funcionando com CI/CD no Render..."
+    message: "Nova versão publicada automaticamente via GitHub Actions - 2 tentativa!"
   });
 });
 
