@@ -1,23 +1,50 @@
-const express = require("express");
-const cors = require("cors");
+// importa o express, que será usado para criar a api
+const express = require("express")
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+// importa o cors, que permite chamadas entre front-end e back-end
+const cors = require("cors")
 
+// cria a aplicação express
+const app = express()
+
+// define a porta da aplicação
+// primeiro tenta usar a porta definida pelo ambiente
+// se não existir, usa a porta 5000
+const port = process.env.PORT || 5000
+
+// configuração do cors da api
+// o cors define quais origens podem acessar o back-end pelo navegador
 const corsOptions = {
-  origin: ["https://projeto-simples-front-three.vercel.app",
-    "https://studious-potato-5g95g9r4jjwq34xjp-8080.app.github.dev"],
+  // lista de endereços autorizados a consumir a api
+  // a primeira origem é o front-end publicado na vercel
+  // a segunda origem deve ser substituída pela url real do front-end aberto no codespaces
+  origin: [
+    "https://url-front-vercel.app",
+    "https://sua-url-do-codespace-8080.app.github.dev"
+  ],
+
+  // métodos http permitidos nas requisições para a api
+  // get: buscar dados
+  // post: cadastrar dados
+  // put: atualizar dados
+  // delete: remover dados
   methods: "GET,POST,PUT,DELETE",
+
+  // cabeçalhos permitidos nas requisições
+  // content-type permite informar o tipo de conteúdo enviado, como json
+  // authorization é usado quando a api trabalha com token ou autenticação
   allowedHeaders: "Content-Type,Authorization",
-};
+}
 
-app.use(cors(corsOptions));
+// aplica as regras de cors definidas acima em todas as rotas da api
+app.use(cors(corsOptions))
 
+// rota principal da api
 app.get("/", (req, res) => {
   res.json({
-    message: "Nova versão publicada automaticamente via GitHub Actions - 2 tentativa!"
-  });
-});
+    message: "Api em execucao no container docker..."
+  })
+})
 
 // rota v1
 app.get("/v1", (req, res) => {
@@ -34,6 +61,7 @@ app.get("/v1", (req, res) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+// inicia o servidor na porta definida
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`)
+})
