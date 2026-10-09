@@ -18,7 +18,7 @@ const corsOptions = {
   // lista de endereços autorizados a consumir a api
   // a primeira origem é o front-end publicado na vercel
   // a segunda origem deve ser substituída pela url real do front-end aberto no codespaces
-  origin: ["https://projeto-simples-front-three.vercel.app", "https://studious-potato-5g95g9r4jjwq34xjp-8080.app.github.dev"],
+  origin: ["projeto-simples-front-5szb9rjkd-amanda-f87b.vercel.app", "https://studious-potato-5g95g9r4jjwq34xjp-8080.app.github.dev"],
 
   // métodos http permitidos nas requisições para a api
   // get: buscar dados
